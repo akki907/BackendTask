@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const setting = require('./config/setting')
 const mongoose = require('mongoose');
 const port = process.env.PORT || setting.PORT;
-// const user = require('./api/profile');
+const api = require('./api/index');
 const bodyParser = require('body-parser');
 
 //database 
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 app.use(morgan('dev'));
 
 //routes
-// app.use('/api/auth', auth);
+app.use('/api', api);
 
 app.get('/', (req, res) => {
     res.send(`Server is running on ${port}`)
